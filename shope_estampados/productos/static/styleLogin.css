@@ -1,0 +1,176 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(150deg, #e4b425, #2c53a4);
+    height: 100vh;
+    color: #333;
+}
+
+.navbar {
+    background-color: #e4b425; 
+    color: white;          
+    padding: 10px 20px;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* Logo */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Imagen del logo */
+.navbar .logo img {
+    margin-right: 10px; 
+}
+
+/* Enlaces del menú */
+.navbar .menu a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    margin: 0 10px; /* Separación entre los enlaces */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background 0.3s; /* Animación de cambio de fondo */
+}
+
+/* Hover en los enlaces */
+.navbar .menu a:hover {
+    background-color:#360e34; /* Color de fondo al pasar el cursor */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.login{
+    max-width: 400px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.login:hover{
+    transform: scale(1.02);
+}
+
+.login h1{
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.username,.password{
+    position: relative;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #adadad;
+}
+
+.login form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .username{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.username input , .password input{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.username input:focus , .password input:focus{
+    border-bottom: 2px solid #2c53a4;
+}
+.username label ,.password label{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    color: #adadad;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.username input:focus + label,
+.password input:focus + label,
+.password input:not(:placeholder-shown) + label,
+.password input:not(:placeholder-shown) + label{
+    top: 0;
+    font-size: 12px;
+    color: #2c53a4;
+}
+
+input[type="submit"]:hover {
+    background-color: #d3a117;
+}
+
+/* Recordar y registrarse */
+.recordar, .registrarse {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.registrarse a {
+    color: #2c53a4;
+    text-decoration: none;
+}
+
+.registrarse a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+.footer img {
+    margin: 0 10px; /* Espaciado entre los iconos de redes sociales */
+    transition: transform 0.3s ease; /* Animación al pasar el cursor */
+}
+.footer img:hover {
+    transform: scale(1.2); /* Agranda el icono al pasar el cursor */
+}
+.footer p {
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+.social-icon svg {
+    width: 30px; /* Ajusta el tamaño del icono */
+    height: 30px;
+    fill: #4267B2; /* Azul típico de Facebook */
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+.social-icon:hover svg {
+    transform: scale(1.2); /* Agranda el icono al pasar el cursor */
+    fill: #365899; /* Cambia el color en hover */
+}
+
+

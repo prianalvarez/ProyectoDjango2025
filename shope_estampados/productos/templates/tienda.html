@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class = "content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0fb986;">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <img src = "{% static 'imagenes/logo.png' %}" alt="logo" width="150px">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href = "{% url 'index' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href = "{% url 'nosotros' %}">Quienes somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href = "{% url 'galeria-de-fotos' %}">Galería de fotos</a>
+                        </li>
+                        {% if user.is_superuser or user.is_staff %}
+                            <!-- Elementos solo para admin -->
+                            <li class="nav-item">
+                                <a class="nav-link" href = "{% url 'mostrar' %}">Ver productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href = "{% url 'producto' %}">Administración de productos</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                    <!-- Botón de inicio/cierre de sesión -->
+                    <div>
+                        <a href="{% url 'perfil' %}">
+                            <center><img src="{% static 'imagenes/logousuario.png' %}" alt="logo usuario" width="40"></center>
+                            <u style = "color: black;">Perfil</u>
+                        </a>       
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <center><h2> Tienda </h2></center><br>
+            <div class="row">
+                <div class="col-8">
+                    <div class="row" style="padding: 5px 0;">
+                        <div class="col-12">
+                            <div class="row">
+                                {% for prod in producto %}
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        {% if prod.imagen %}
+                                            <img src="{{ prod.imagen.url }}" class="card-img-top mx-auto">
+                                        {% else %}
+                                            <img src="{% static 'img/sinfoto.webp' %}" class="card-img-top mx-auto">
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-weight:bold;"> Código SKU : {{ prod.codigo_sku }}</h5>
+                                            <p class="card-text">
+                                                Nombre: {{ prod.nombre }}<br>
+                                                Disponibilidad: {{ prod.disponibilidad }}<br>
+                                                Precio:$ {{ prod.precio }}<br>
+                                            </p>
+                                            <a href="{% url 'agregar' prod.codigo_sku %}" class="btn btn-outline-success">Agregar al carro</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    {% include "carrito.html" %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
